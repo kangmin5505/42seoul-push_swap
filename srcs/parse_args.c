@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:46:24 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/29 12:26:12 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/29 17:10:00 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	check_range_nduplicated(char *str, t_stack *stack_a, int *nbr)
 
 bool	check_digit(char *str)
 {
-	while (*str == '+' || *str == '-' || *str == ' ')
+	while (*str == '+' || *str == '-')
 		str++;
 	while (*str)
 	{
@@ -44,6 +44,19 @@ bool	check_digit(char *str)
 	return (true);
 }
 
+void	free_dpstr(char **strs)
+{
+	int	idx;
+
+	idx = 0;
+	while (strs[idx])
+	{
+		free(strs[idx]);
+		idx++;
+	}
+	free(strs);
+}
+
 bool	parse_argvs(int argc, char *argv[], t_stack *stack_a)
 {
 	char	**strs;
@@ -51,12 +64,14 @@ bool	parse_argvs(int argc, char *argv[], t_stack *stack_a)
 	int		str_idx;
 	int		nbr;
 
-	argv_idx = 1;
-	while (argv_idx < argc)
+	argv_idx = 0;
+	while (++argv_idx < argc)
 	{
 		strs = ft_split(argv[argv_idx], ' ');
-		str_idx = 0;
-		while (strs[str_idx])
+		if (!(*strs))
+			return (false);
+		str_idx = -1;
+		while (strs[++str_idx])
 		{
 			if (check_digit(strs[str_idx]) == false || \
 				check_range_nduplicated(strs[str_idx], stack_a, &nbr) == false)
@@ -65,10 +80,8 @@ bool	parse_argvs(int argc, char *argv[], t_stack *stack_a)
 				return (false);
 			}
 			push_stack(stack_a, nbr);
-			str_idx++;
 		}
-		free(strs);
-		argv_idx++;
+		free_dpstr(strs);
 	}
 	return (true);
 }

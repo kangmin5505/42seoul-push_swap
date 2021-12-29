@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:53:50 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/28 23:25:08 by kangkim          ###   ########.fr        #
+#    Updated: 2021/12/29 15:08:25 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ INCLUDES = includes
 FILE = push_swap	\
 		parse_args	\
 		stack		\
+		operators	\
 
 SRCS_DIR = srcs
 OBJS_DIR = objs

@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 21:09:15 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/29 12:27:35 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/29 14:42:46 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_stack(t_stack **stack)
 	(*stack) = (t_stack *)malloc(sizeof(t_stack));
 	(*stack)->head = NULL;
 	(*stack)->tail = NULL;
+	(*stack)->num_values = 0;
 }
 
 void	init_node(t_node *node, t_node *next, t_node *prev, int nbr)
@@ -43,4 +44,5 @@ void	push_stack(t_stack *stack, int nbr)
 		stack->tail->next = node;
 		stack->tail = node;
 	}
+	stack->num_values += 1;
 }

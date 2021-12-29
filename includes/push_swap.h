@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:42:42 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/29 12:33:54 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/29 16:34:42 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct s_node
 typedef struct s_stack	t_stack;
 struct s_stack
 {
+	int		num_values;
 	t_node	*head;
 	t_node	*tail;
 };
@@ -44,10 +45,17 @@ void	free_stack(t_stack **stack);
 bool	parse_argvs(int argc, char *argv[], t_stack *stack_a);
 bool	check_digit(char *str);
 bool	check_range_nduplicated(char *str, t_stack *stack_a, int *nbr);
+void	free_dpstr(char **strs);
 
 /* stack */
 void	init_stack(t_stack **stack);
 void	init_node(t_node *node, t_node *next, t_node *prev, int nbr);
 void	push_stack(t_stack *stack, int nbr);
+
+/* operators */
+void	swap(t_stack *stack);
+void	push(t_stack *to_stack, t_stack *from_stack);
+void	rotate(t_stack *stack);
+void	r_rotate(t_stack *stack);
 
 #endif
