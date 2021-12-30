@@ -5,69 +5,84 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 15:32:31 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/29 17:12:23 by kangkim          ###   ########.fr       */
+/*   Created: 2021/12/30 15:13:46 by kangkim           #+#    #+#             */
+/*   Updated: 2021/12/31 00:25:19 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack **stack)
+void	quick_sort_b(t_stack *stack_a, t_stack *stack_b, \
+					int	first, int last, int total_cnt)
 {
-	t_node	*node;
+	int		median_rank;
+	int		pa_cnt;
 	t_node	*curr;
 
-	curr = (*stack)->head;
-	while (curr)
+	if (total_cnt <= 2 || check_reverse_sort(stack_b) == true)
 	{
-		node = curr;
-		curr = curr->next;
-		free(node);
+		manual_reverse_algorithm(stack_a, stack_b, total_cnt);
+		return ;
 	}
-	free(*stack);
+	median_rank = (first + last) / 2;
+	pa_cnt = 0;
+	curr = stack_b->head;
+	while (check_reverse_sort(stack_b) != true && pa_cnt != (total_cnt / 2))
+	{
+		if (curr->rank < median_rank)
+		{
+			push_to_from(stack_a, stack_b);
+			pa_cnt += 1;
+		}
+		else
+			rotate(stack_b);
+		curr = stack_b->head;
+	}
+	quick_sort_b(stack_a, stack_b, first - pa_cnt, last, total_cnt - pa_cnt);
+	while (pa_cnt-- && stack_b->num_of_data != 0)
+		push_to_from(stack_b, stack_a);
 }
 
-int	main(int argc, char *argv[])
+void	quick_sort_a(t_stack *stack_a, t_stack *stack_b, \
+					 int first, int last, int total_cnt)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_node	*node;
+	int		median_rank;
+	int		pb_cnt;
+	t_node	*curr;
 
-	if (argc > 1)
+	if (total_cnt <= 3 || check_sort(stack_a) == true)
 	{
-		init_stack(&stack_a);
-		init_stack(&stack_b);
-		if (parse_argvs(argc, argv, stack_a) == false)
-		{
-			ft_putstr_fd("Error\n", STDERR_FILENO);
-			exit(EXIT_FAILURE);
-		}
-		printf("========================= check stack_a value ============================\n");
-		node = stack_a->head;
-		while (node)
-		{
-			printf("value : %d\n", node->value);
-			printf("now : %p\n", node);
-			printf("prev : %p\n", node->prev);
-			printf("next : %p\n", node->next);
-			node = node->next;
-		}
-		printf("num_values : %d\n", stack_a->num_values);
-		printf("========================= end  ============================\n");
-		printf("========================= check stack_b value ============================\n");
-		node = stack_b->head;
-		while (node)
-		{
-			printf("value : %d\n", node->value);
-			printf("now : %p\n", node);
-			printf("prev : %p\n", node->prev);
-			printf("next : %p\n", node->next);
-			node = node->next;
-		}
-		printf("num_values : %d\n", stack_b->num_values);
-		printf("========================= end  ============================\n");
-		free_stack(&stack_a);
-		free_stack(&stack_b);
+		manual_algorithm(stack_a);
+		return ;
 	}
-	return (0);
+	median_rank = (first + last) / 2;
+	pb_cnt = 0;
+	curr = stack_a->head;
+	while (check_sort(stack_a) != true && pb_cnt != (total_cnt / 2))
+	{
+		if (curr->rank > median_rank)
+		{
+			push_to_from(stack_b, stack_a);
+			pb_cnt += 1;
+		}
+		else
+			rotate(stack_a);
+		curr = stack_a->head;
+	}
+	quick_sort_a(stack_a, stack_b, first, last - pb_cnt, total_cnt - pb_cnt);
+	quick_sort_b(stack_a, stack_b, median_rank + 1, last, pb_cnt);
+}
+
+void	sort_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	int	first;
+	int last;
+	if (stack_a->num_of_data <= 3)
+		manual_algorithm(stack_a);
+	else
+	{
+		first = 1;
+		last = stack_a->num_of_data;
+		quick_sort_a(stack_a, stack_b, first, last, stack_a->num_of_data);
+	}
 }

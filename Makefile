@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:53:50 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/29 15:08:25 by kangkim          ###   ########.fr        #
+#    Updated: 2021/12/30 23:02:06 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,12 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 INCLUDES = includes
-FILE = push_swap	\
-		parse_args	\
-		stack		\
-		operators	\
+FILE = main				\
+		parse_args		\
+		stack			\
+		operators		\
+		push_swap		\
+		push_swap_utils	\
 
 SRCS_DIR = srcs
 OBJS_DIR = objs

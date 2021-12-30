@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:46:24 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/29 17:10:00 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/30 19:39:41 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	check_range_nduplicated(char *str, t_stack *stack_a, int *nbr)
 	curr = stack_a->head;
 	while (curr)
 	{
-		if (curr->value == (int)num)
+		if (curr->data == (int)num)
 			return (false);
 		curr = curr->next;
 	}
@@ -79,7 +79,7 @@ bool	parse_argvs(int argc, char *argv[], t_stack *stack_a)
 				free(strs);
 				return (false);
 			}
-			push_stack(stack_a, nbr);
+			add_stack(stack_a, nbr);
 		}
 		free_dpstr(strs);
 	}
