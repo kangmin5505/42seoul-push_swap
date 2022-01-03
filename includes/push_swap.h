@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:42:42 by kangkim           #+#    #+#             */
-/*   Updated: 2022/01/03 22:51:08 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/01/03 23:13:29 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <limits.h>
 # include "libft.h"
 
-# include <stdio.h>
 # define STACK_A 'a'
 # define STACK_B 'b'
 
