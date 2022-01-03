@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:53:50 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/30 23:02:06 by kangkim          ###   ########.fr        #
+#    Updated: 2022/01/03 17:39:03 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ FILE = main				\
 		stack			\
 		operators		\
 		push_swap		\
+		push_swap_sub	\
+		push_swap_sub2	\
 		push_swap_utils	\
 
 SRCS_DIR = srcs

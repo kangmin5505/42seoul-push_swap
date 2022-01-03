@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:42:42 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/31 00:20:11 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/01/03 22:51:08 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,37 @@ struct s_stack
 
 /* main */
 void	free_stack(t_stack **stack);
-bool	check_sort(t_stack *stack_a);
-bool	check_reverse_sort(t_stack *stack_b);
+bool	check_sort(t_stack *stack_a, int size);
+bool	check_reverse_sort(t_stack *stack_b, int size);
 
 /* push_swap */
 void	sort_stack(t_stack *stack_a, t_stack *stack_b);
-void	quick_sort_a(t_stack *stack_a, t_stack *stack_b, \
-					int first, int last, int total_cnt);
+void	selection(t_stack *stack_a, t_stack *stack_b, int size);
+void	brute_force(t_stack *stack_a);
+void	nearest_rotate(t_stack *stack_a);
+void	do_operation(t_stack *stack_a, int ra_cnt, int rra_cnt);
+
+/* push_swap_sub */
+void	complex_swap(t_stack *stack_a, t_stack *stack_b);
+void	a_to_b(t_stack *stack_a, t_stack *stack_b, int left, \
+				int right);
+void	move_target_rank(t_stack *stack_a, int mid);
+void	b_to_a(t_stack *stack_a, t_stack *stack_b, int left, \
+				int right);
+
+/* push_swap_sub2 */
+bool	pre_checker_b(t_stack *stack_a, t_stack *stack_b, int size);
+bool	pre_checker_a(t_stack *stack_a, t_stack *stack_b, int size, \
+						bool s_falg);
+void	b_to_a_sub(t_stack *stack_a, t_stack *stack_b, int left, int right);
+int		a_to_b_sub(t_stack *stack_a, t_stack *stack_b, int left, int right);
 
 /* push_swap_utils */
-void	manual_algorithm(t_stack *stack);
-void	manual_reverse_algorithm(t_stack *stack_a, t_stack *stack_b, \
-								int total_cnt);
+bool	check_remain_a(t_stack *stack_a, int mid, int cnt);
+bool	check_remain_b(t_stack *stack_b, int mid, int cnt);
+void	brute_force_a(t_stack *stack_a);
+void	brute_force_a_sub1(t_stack *stack_a, int a, int b, int c);
+void	brute_force_a_sub2(t_stack *stack_a, int a, int b, int c);
 
 /* parse_argvs */
 bool	parse_argvs(int argc, char *argv[], t_stack *stack_a);

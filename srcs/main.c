@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 15:32:31 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/31 00:27:19 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/01/03 22:14:56 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	free_stack(t_stack **stack)
 	free(*stack);
 }
 
-bool	check_sort(t_stack *stack_a)
+bool	check_sort(t_stack *stack_a, int size)
 {
 	t_node	*next_node;
 	int		curr_rank;
 
 	next_node = stack_a->head->next;
 	curr_rank = stack_a->head->rank;
-	while (next_node)
+	while (next_node && size--)
 	{
 		if (curr_rank != next_node->rank + 1)
 			return (false);
@@ -44,14 +44,14 @@ bool	check_sort(t_stack *stack_a)
 	return (true);
 }
 
-bool	check_reverse_sort(t_stack *stack_b)
+bool	check_reverse_sort(t_stack *stack_b, int size)
 {
 	t_node	*next_node;
 	int		curr_rank;
 
 	next_node = stack_b->head->next;
 	curr_rank = stack_b->head->rank;
-	while (next_node)
+	while (next_node && size--)
 	{
 		if (curr_rank != next_node->rank - 1)
 			return (false);
@@ -65,9 +65,6 @@ int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	/*
-	t_node	*node;
-	*/
 
 	if (argc > 1)
 	{
@@ -78,30 +75,8 @@ int	main(int argc, char *argv[])
 			ft_putstr_fd("Error\n", STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
-		if (check_sort(stack_a) == false)
+		if (check_sort(stack_a, stack_a->num_of_data) == false)
 			sort_stack(stack_a, stack_b);
-		/*
-		printf("=========================================== stack_a ============================\n");
-		node = stack_a->head;
-		while (node)
-		{
-			printf("data : %d\n", node->data);
-			printf("rank : %d\n", node->rank);
-			printf("\n");
-			node = node->next;
-		}
-		printf("=========================================== done ================================\n");
-		printf("=========================================== stack_b ============================\n");
-		node = stack_b->head;
-		while (node)
-		{
-			printf("data : %d\n", node->data);
-			printf("rank : %d\n", node->rank);
-			printf("\n");
-			node = node->next;
-		}
-		printf("=========================================== done ================================\n");
-		*/
 		free_stack(&stack_a);
 		free_stack(&stack_b);
 	}
