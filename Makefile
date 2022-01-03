@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:53:50 by kangkim           #+#    #+#              #
-#    Updated: 2022/01/03 17:39:03 by kangkim          ###   ########.fr        #
+#    Updated: 2022/01/03 22:54:10 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ _GREEN	=	\033[0;32m
 NAME = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 INCLUDES = includes
 FILE = main				\
